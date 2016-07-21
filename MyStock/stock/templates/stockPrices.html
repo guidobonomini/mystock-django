@@ -3,13 +3,16 @@
 {% block content %}
 	<div class="container" style="margin:auto;top:5%;right:0;left:0;position:absolute; width:80%; height:15%; border-radius: 3px;">
 		{% for value in stock.results %}
+		
 			{% if forloop.counter|divisibleby:"4"%}
 				<div class="row">
 			{% endif %}
+			
 				<div class="col-md-3">
-					<h1>{{value.symbol}} <small>{{value.name}}</small></h1>
+					<h1><a href="../stockDetail/{{value.symbol}}">{{value.symbol}}</a><small>{{value.name}}</small></h1>
 					<h4>Last Price: <strong>{{value.lastPrice}}</strong></h4>
 					<h4>Open Price: <strong>{{value.open}}</strong></h4>
+					
 					{% if value.netChange > 0 %}
 						<h4>Net Change: <strong style="color:green;">+{{value.netChange}}</strong></h4>
 						<h4>Percentage Change: <strong style="color:green;">+{{value.percentChange}}</strong></h4>
@@ -17,10 +20,12 @@
 						<h4>Net Change: <strong style="color:red;">{{value.netChange}}</strong></h4>
 						<h4>Percentage Change: <strong style="color:red;">{{value.percentChange}}</strong></h4>
 					{% endif %}
+					
 					<h4>High: <strong>{{value.high}}</strong></h4>
 					<h4>Low: <strong>{{value.low}}</strong></h4>
 					<h4>Volume: <strong>{{value.volume}}</strong></h4>
 				</div>
+				
 			{% if forloop.counter|divisibleby:"4"%}
 				</div>
 			{% endif %}
